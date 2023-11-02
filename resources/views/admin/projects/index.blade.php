@@ -16,7 +16,7 @@
         <tbody>
         <td>{{$project->title}}</td>
         <td>{{$project->content}}</td> 
-        <td><span><a href="{{route('admin.projects.show', $project)}}">Mostra</a></span>
+        <td><span><a href="{{route('admin.projects.show', $project)}}">Dettagli</a></span>
             <span><a href="{{route('admin.projects.edit', $project)}}">Modifica</a></span>
             <a href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-{{$project->id}}" class="mx-1">
                 Cancella  
@@ -59,5 +59,30 @@
 </tbody>
 </table> 
     @endforeach
+</div>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+
+        <th scope="col">Type</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      @forelse($projects as $project)
+      <tr>
+
+        <td>{{ $project->type?->label }}</td>
+
+      </tr>
+      @empty
+      <tr>
+        <td colspan="n">Nessun risultato</td>
+      </tr>
+      @endforelse
+    </tbody>
+  </table>
 </div>
 @endsection

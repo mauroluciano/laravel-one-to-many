@@ -21,6 +21,20 @@
             </button>
         </div>
 
+
+        <label for="project_id" class="form-label">Categoria</label>
+        <select name="project_id" id="project_id" class="form-select @error('project_id') is-invalid @enderror">
+          <option value="">Non categorizzato</option>
+          @foreach ($project as $projects)
+            <option value="{{ $project->id }}" @if (old('project_id') == $project->id) selected @endif>{{ $project->label }}
+            </option>
+          @endforeach
+        </select>
+        @error('project_id')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+        @enderror
     </form>
 </div>
 @endsection

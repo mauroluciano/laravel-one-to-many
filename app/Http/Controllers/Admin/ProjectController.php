@@ -59,10 +59,6 @@ public function destroy(Project $project)
 
 
 
-
-
-
-
 public function update(Request $request, Project $project)
 {
     $data = $request->all();
@@ -84,5 +80,8 @@ public function update(Request $request, Project $project)
         ->with('message_type', 'danger'));
 
 }*/
+
+
+
 
 }

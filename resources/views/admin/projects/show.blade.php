@@ -6,6 +6,9 @@
 <p>{{$project->content}}</p>
 <p class="card-text"><small class="text-muted"><strong>Date Creation: </strong> {{$project->created_at}}</small></p>
       <p class="card-text"><small class="text-muted"><strong>Last Update: </strong> {{$project->updated_at}}</small></p>
+    
+      <strong>Type: </strong> {{ $project->type ? $project->type->label :
+        'Nessuna categoria' }}
     </div>
 </div>
 
