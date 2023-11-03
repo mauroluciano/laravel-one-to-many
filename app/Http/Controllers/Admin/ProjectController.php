@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Type;
+
 
 class ProjectController extends Controller
 {
@@ -20,19 +22,22 @@ public function show(Project $project)
    return view('admin.projects.show', compact('project'));
 }
 
-public function create(Project $project)
+public function create()
 {
-   return view('admin.projects.create', compact('project'));
+      $types = Type::all();
+
+   return view('admin.projects.create', compact('types'));
 }
 
 public function edit(Project $project)
 {
-   return view('admin.projects.edit', compact('project'));
+   $types = Type::all();
+   return view('admin.projects.edit', compact('project', 'types' ));
 }
 
 public function destroy(Project $project)
 {
-   return view('admin.projects.index', compact('project'));
+   return view('admin.projects.index');
 }
 
 
@@ -51,10 +56,10 @@ public function destroy(Project $project)
       $project = new Project();
       $project->fill($data);
       $project->save();
-      return response(redirect()->route('admin.projects.show', $project)
+      return redirect()->route('admin.projects.show', $project)
           // * To add flash messages
           ->with('message', 'Comic saved succesfully!')
-          ->with('message_type', 'success'));
+          ->with('message_type', 'success');
   }
 
 
@@ -64,10 +69,10 @@ public function update(Request $request, Project $project)
     $data = $request->all();
 //    $this->validation($data);
     $project->update($data);
-    return response(redirect()->route('admin.projects.show', $project)
+    return redirect()->route('admin.projects.show', $project)
         // * To add flash messages
         ->with('message', 'Comic edited succesfully!')
-        ->with('message_type', 'success'));
+        ->with('message_type', 'success');
 }
 
 /*public function destroy(Project $project)
