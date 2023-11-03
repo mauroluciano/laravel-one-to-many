@@ -25,8 +25,8 @@
         <select name="project_id" id="project_id" class="form-select @error('project_id') is-invalid @enderror">
           <option value="">Non categorizzato</option>
           @foreach ($types as $type)
-            <option value="{{ $type->id }}" @if (old('type_id') ?? $project->type_id == $type->id) selected @endif>{{ $type->label }}
-            </option>
+          <option value="{{ $type->id }}" @if (old('type_id') ?? $type->type_id == $type->id) selected @endif>{{ $type->label }}
+          </option>
           @endforeach
         </select>
         @error('project_id')
